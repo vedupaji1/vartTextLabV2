@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="VARt TextLab" content="html text editor" />
+
+  <!--Linking Manifest File-->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!--Google Fonts CDN Link-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Acme&family=Balsamiq+Sans&family=Bebas+Neue&family=Inconsolata:wght@500&family=Kanit:ital,wght@1,300&family=Mulish:ital,wght@1,900&family=PT+Sans:ital,wght@0,400;1,700&family=Prompt:wght@500&family=Rubik:wght@600&family=Secular+One&family=Source+Sans+Pro&family=Titillium+Web:wght@600;700;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Acme&family=Kanit:ital,wght@1,300&family=PT+Sans:ital,wght@1,700&family=Rubik:wght@600&family=Secular+One&family=Titillium+Web:wght@600;700;900&display=swap"
+    rel="stylesheet">
+
+  <!--Font Awesome CDN Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="favicon.svg" sizes="16x16" type="image/svg">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <title>VARt TextLab</title>
+</head>
+
+<body onload="setOutputDivSize()" onresize="setOutputDivSize()">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script>
+    const setOutputDivSize = () => {
+      if (location.pathname === "/simpleEditor" || location.pathname === "/") {
+        if (location.pathname === "/simpleEditor") {
+          document.getElementsByClassName("editor-class")[0].style.height = (700 - document.getElementsByClassName(
+            "toolbar-class")[0].offsetHeight) / 10 + 'rem';
+        }
+        if (window.innerWidth <= 900) {
+          document.getElementsByClassName("textEditorMainDiv")[0].style.flexDirection = "column"
+          if (location.pathname === "/simpleEditor") {
+            document.getElementsByClassName("toolbar-class")[0].style.overflowY = "auto";
+            document.getElementsByClassName("wrapper-class")[0].style.padding = "0rem"
+            document.getElementsByClassName("wrapper-class")[0].style.width = "97%"
+            document.getElementsByClassName("editor-class")[0].style.height = 700 - document.getElementsByClassName(
+              "toolbar-class")[0].offsetHeight + 'px'
+          } else if (location.pathname === "/") {
+            document.getElementsByClassName("CodeMirror")[0].style.width = "97%";
+            document.getElementsByClassName("CodeMirror")[0].style.marginRight = "0%";
+          }
+
+          if (document.getElementsByClassName("outputPlace")[0] !== undefined) {
+            document.getElementsByClassName("outputPlace")[0].style.width = "97%"
+            document.getElementsByClassName("outputPlace")[0].style.marginRight = "0rem"
+            document.getElementsByClassName("outputPlace")[0].style.marginTop = "2rem"
+          }
+
+          if (document.getElementsByClassName("fa-arrow-right")[0].style.transform === "") {
+            document.getElementsByClassName("outputPlace")[0].style.display = "none"
+          }
+
+          if (document.getElementsByClassName("fa-arrow-right")[0].style.transform === "rotate(0deg)") {
+            document.getElementsByClassName("outputPlace")[0].style.display = "none"
+          }
+        } else {
+          document.getElementsByClassName("outputPlace")[0].style.display = "block"
+          if (document.getElementsByClassName("textEditorMainDiv")[0].style.flexDirection === "column") {
+            document.getElementsByClassName("fa-arrow-right")[0].style.transform = "rotate(90deg)";
+            document.getElementsByClassName("outputPlace")[0].style.width = "97%";
+            document.getElementsByClassName("outputPlace")[0].style.marginRight = "0rem"
+            document.getElementsByClassName("outputPlace")[0].style.marginTop = "2rem"
+          }
+        }
+
+        if (document.getElementsByClassName("fa-chevron-right")[0].getAttribute("id") === "unActive") {
+          let curWindowWidth = window.innerWidth;
+          if (curWindowWidth <= 700) {
+            document.getElementsByClassName("headerTextDiv")[0].style.height = "5.5rem";
+            document.getElementsByClassName("supportiveDiv")[0].style.height = "7rem";
+          } else {
+            document.getElementsByClassName("headerTextDiv")[0].style.height = "6rem";
+            document.getElementsByClassName("supportiveDiv")[0].style.height = "8rem";
+          }
+          document.getElementsByClassName("headerPart")[0].style.height = "7rem";
+          if (curWindowWidth <= 390) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "65%";
+          } else if (curWindowWidth <= 450) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "60%";
+          } else if (curWindowWidth <= 600) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "50%";
+          } else if (curWindowWidth <= 800) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "40%";
+          } else if (curWindowWidth <= 950) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "35%";
+          } else if (curWindowWidth <= 1650) {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "25%";
+          } else {
+            document.getElementsByClassName("headerTextDiv")[0].style.width = "20%";
+          }
+        }
+      } else if ((location.pathname === "/output") && (document.getElementById("fullOutputDisplay") !== null)) {
+        document.getElementById("fullOutputDisplay").style.height = (((window.innerHeight - document
+          .getElementsByClassName("outputShowerHeader")[0].offsetHeight) - 10) / 10) + 'rem';
+      }
+    }
+  </script>
+</body>
+
+</html>
